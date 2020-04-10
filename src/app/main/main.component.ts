@@ -46,7 +46,7 @@ export class MainComponent implements OnInit {
     console.log(length);
     var alphabet = 68;
     var results = Math.pow(alphabet,length);
-    results /= 200000;
+    results /= 10000000000000;
     console.log(results); 
     return results;
     //68^4
