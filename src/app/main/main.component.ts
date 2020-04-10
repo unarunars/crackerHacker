@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { test } from 'src/assets/js/test.js';
 
 
 @Component({
@@ -11,6 +12,7 @@ export class MainComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    test();
   }
   onKey(event: any) { // without type info
     //this.values += event.target.value;
