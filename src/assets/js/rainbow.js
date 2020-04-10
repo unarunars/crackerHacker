@@ -1,4 +1,5 @@
 export var rainbowArr = [];
+export var passwordArr = [];
 
 export function createRainbow() {
     var rainbow = `$md5$ztewywrjmzk0owjhntlhymjlntzlmdu3zjiwzjg4m2u:123456
@@ -10010,9 +10011,6 @@ export function createRainbow() {
             unicode += rainbowTemp[1].charCodeAt(j);
         }
         rainbowArr[parseInt(unicode)] = rainbowTemp[0];
+        passwordArr[i] = rainbowTemp[1];
     }
-}
-
-export function laterTest() {
-    console.log(rainbowArr[5056485349575654]);
 }
