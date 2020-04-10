@@ -14,9 +14,9 @@ export async function checkPassword(pw) {
             time : 0
         };
     
-    
+    var startTime = new Date();
+
     passwordArr.forEach(element => {
-        var startTime = new Date();
         if (leetSpeek(pw, element)) {
             var endTime = new Date();
             console.log('leet');
