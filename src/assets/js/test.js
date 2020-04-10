@@ -8,7 +8,8 @@ export function test() {
 
     console.log(parseInt(finalString));
 
-    //una að prufa
+    //una að prufa virkar ekki
+    
     function readTextFile(file, callback) {
         var xhr = new XMLHttpRequest();
         xhr.overrideMimeType("application/json")
