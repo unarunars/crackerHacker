@@ -38,6 +38,7 @@ export class MainComponent implements OnInit {
     }else{
       console.log(value.length);
       var time = this.showTime(value);
+      console.log(time);
       this.title = "The time it took to find your password is"
       if(time < 0){
         var mill = time / 1000;
@@ -96,11 +97,11 @@ export class MainComponent implements OnInit {
     console.log("alphaber: ")
     console.log(alphabet)
     var results = Math.pow(alphabet,value.length);
+    //erum að gera ráð fyrir að talvan sé mjög öflug
     results /= 10000000000000;
     console.log(results); 
     return results;
-    //68^4
-    //
+    
   }
 
 
