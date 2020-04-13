@@ -16,7 +16,6 @@ export class MainComponent implements OnInit {
   
   ngOnInit(): void {
     createRainbow();
-    //console.log(checkPassword('brady'));
   }
   onKey(event: any) { // without type info
     //this.values += event.target.value;

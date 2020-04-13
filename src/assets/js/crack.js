@@ -2,7 +2,7 @@ import { rainbowArr, passwordArr } from 'src/assets/js/rainbow.js';
 
 const alphabet = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ#$%&*?';
 
-export function checkPassword(pw) {
+export async function checkPassword(pw) {
     var unicode = '';
     for (var i = 0; i < pw.length; i++)
         unicode += pw.charCodeAt(i);
@@ -16,31 +16,35 @@ export function checkPassword(pw) {
     
     var startTime = new Date();
 
-    passwordArr.forEach(element => {
+    await passwordArr.forEach(element => {
         if (leetSpeek(pw, element)) {
             var endTime = new Date();
+            console.log('leet');
             return {
                 successful : true,
                 how : 'leetspeek',
                 time : endTime - startTime
             };
         }
-        if (skeytiBak(pw, element)) {
-            var endTime = new Date();
-            console.log('bak');
-            return {
-                successful : true,
-                how : 'skeytibak',
-                time : endTime - startTime
-            };
-        }
-        if (skeytiFram(pw, element)) {
-            var endTime = new Date();
-            return {
-                successful : true,
-                how : 'skeytifram',
-                time : endTime - startTime
-            };
+        if (pw.includes(element)) {
+            if (skeytiBak(pw, element)) {
+                var endTime = new Date();
+                console.log('bak');
+                return {
+                    successful : true,
+                    how : 'skeytibak',
+                    time : endTime - startTime
+                };
+            }
+            if (skeytiFram(pw, element)) {
+                var endTime = new Date();
+                console.log('fram');
+                return {
+                    successful : true,
+                    how : 'skeytifram',
+                    time : endTime - startTime
+                };
+            }
         }
         if (element == 'brady')
             return {
