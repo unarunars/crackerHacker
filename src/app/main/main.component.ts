@@ -17,7 +17,7 @@ export class MainComponent implements OnInit {
   
   ngOnInit(): void {
     createRainbow();
-    console.log(checkPassword('brady'));
+    //console.log(checkPassword('brady'));
   }
   onKey(event: any) { // without type info
     //this.values += event.target.value;
@@ -26,10 +26,11 @@ export class MainComponent implements OnInit {
     this.getCrackerHacker(this.value);
   }
   getCrackerHacker(value: string){
-    
     let obj = checkPassword(value);
     console.log(obj);
-    if(obj.successful){
+    //let obj = checkPassword(value);
+    //console.log(obj);
+   /* if(obj.successful){
       console.log("það fannst");
       this.title = "It was immediately";
       if(obj.how === 'rainbow'){
@@ -56,9 +57,9 @@ export class MainComponent implements OnInit {
       }else if( time >= 604800 && time < 1209600){
         var half
       }
-      this.text = time + " sek";*/
+      this.text = time + " sek";
       this.text = "afhverju kemur þetta ekki args";
-    }
+    }*/
     
   }
   showTime(value : string){
