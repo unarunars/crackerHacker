@@ -28,33 +28,43 @@ export class MainComponent implements OnInit {
   getCrackerHacker(value: string){
    
       var time = this.showTime(value);
-      console.log(time < 0);
-      console.log(Math.sign(time));
-      console.log(time);
-      console.log(time.toFixed());
-      console.log(time);
+     
       this.title = "The time it took to find your password is";
-     /* if(time < 0){
-        var mill = time / 1000;
-        this.text = mill + " milliseconds";
-      }else if(time >= 60  && time < 3600){
-        var min = time / 60;
-        this.text = min + " minutes"
-      }else if(time >= 3600 && time < 86400){
-        var hour = time / 3600;
-        this.text = hour + " hours";  
+      //ef hann er minni en microsec
+      if(time <= 0.000001){
+        let nanosec = time * 1000000000;
+        this.text = nanosec + " nanoseconds"; 
+      //ef hann er minni en millisek
+      }else if(time < 0.001){
+        let microsec = time * 1000000;
+        this.text = Math.floor(microsec) + " microseconds";
+      //ef hann er minni en sek
+      }else if(time < 1.0){
+        let millisec = time * 1000;
+        this.text = Math.floor(millisec) + " milliseconds";
+      //ef hann er minni en min
+      }else if(time < 60 ){
+        let sek = time;
+        this.text = Math.floor(sek) + " seconds";
+      //ef hann er minni en klst
+      }else if(time < 3600 ){
+        let min = time / 60;
+        this.text = Math.floor(min) + " minutes";
+      //minni enn dagur
+      }else if(time < 86400){
+        let hour = time / 3600;
+        this.text = Math.floor(hour) + " hours";
+      //minni enn vika 
+      }else if(time < 604800){
+        let day = time /86400;
+        this.text = Math.floor(day)+ " days";
+      //UNAR HÉRNA VIKA VIRKAR EKKI WHYYY 
+      //minna en mánuður
+      }else if(time < 2629744){
+        let week = time / 604800;
+        this.text = Math.floor(week)+ " weeks";
+      //minna en ár
       }
-      */
-      this.text = "afhverju kemur þetta ekki args";
-      
-      /*else if(time >=86400 && time < 604800){
-        var day = time /93600;
-        this.text = month + " week";
-      }else if( time >= 604800 && time < 1209600){
-        var half
-      }
-      this.text = time + " sek";
-    }*/
     
   }
   showTime(value : string){
@@ -92,6 +102,7 @@ export class MainComponent implements OnInit {
     /*console.log(results);*/
     //erum að gera ráð fyrir að talvan sé mjög öflug
     results /= 10000000000000;
+    //kemur í sek
     return results;
     
   }
