@@ -2,7 +2,7 @@ import { rainbowArr, passwordArr } from 'src/assets/js/rainbow.js';
 
 const alphabet = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ#$%&*?';
 
-export async function checkPassword(pw) {
+export function checkPassword(pw) {
     var unicode = '';
     for (var i = 0; i < pw.length; i++)
         unicode += pw.charCodeAt(i);

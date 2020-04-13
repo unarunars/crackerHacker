@@ -9,6 +9,7 @@ import { checkPassword } from 'src/assets/js/crack.js';
   styleUrls: ['./main.component.css']
 })
 export class MainComponent implements OnInit {
+  //brady
   value = "";
   title = "";
   text = "";
@@ -16,7 +17,7 @@ export class MainComponent implements OnInit {
   
   ngOnInit(): void {
     createRainbow();
-    //console.log(checkPassword('brady'));
+    console.log(checkPassword('brady'));
   }
   onKey(event: any) { // without type info
     //this.values += event.target.value;
@@ -30,9 +31,9 @@ export class MainComponent implements OnInit {
     console.log(obj);
     if(obj.successful){
       console.log("það fannst");
-      this.title = "It was immediately"
+      this.title = "It was immediately";
       if(obj.how === 'rainbow'){
-        this.text = "It was found in a list of known passwords"
+        this.text = "It was found in a list of known passwords";
       }
 
     }else{
