@@ -19,7 +19,6 @@ export function checkPassword(pw) {
     passwordArr.forEach(element => {
         if (leetSpeek(pw, element)) {
             var endTime = new Date();
-            console.log('leet');
             return {
                 successful : true,
                 how : 'leetspeek',
@@ -37,20 +36,19 @@ export function checkPassword(pw) {
         }
         if (skeytiFram(pw, element)) {
             var endTime = new Date();
-            console.log('fram');
             return {
                 successful : true,
                 how : 'skeytifram',
                 time : endTime - startTime
             };
         }
+        if (element == 'brady')
+            return {
+                succesful : false,
+                how : 'none',
+                time : null
+            }
     });
-    
-    return {
-        succesful : false,
-        how : 'none',
-        time : null
-    }
 }
 
 function leetSpeek(pw, testpw) {
