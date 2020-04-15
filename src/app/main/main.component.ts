@@ -24,9 +24,8 @@ export class MainComponent implements OnInit {
     this.getCrackerHacker(this.value);
   }
   getCrackerHacker(value: string){
+    let obj = checkPassword(value)
     
-    let obj = checkPassword(value);
-    console.log(obj);
     if(obj.successful){
       console.log("það fannst");
       this.title = "It was immediately"
@@ -58,6 +57,7 @@ export class MainComponent implements OnInit {
     }
     
   }
+  
   showTime(value : string){
     console.log(length);
     var character = "";
@@ -101,7 +101,5 @@ export class MainComponent implements OnInit {
     //68^4
     //
   }
-
-
-
 }
+

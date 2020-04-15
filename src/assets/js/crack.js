@@ -16,7 +16,7 @@ export async function checkPassword(pw) {
     
     var startTime = new Date();
 
-    await passwordArr.forEach(element => {
+    passwordArr.forEach(element => {
         if (leetSpeek(pw, element)) {
             var endTime = new Date();
             console.log('leet');
@@ -27,28 +27,35 @@ export async function checkPassword(pw) {
             };
         }
         if (pw.includes(element)) {
-            if (skeytiBak(pw, element)) {
+            var bak = skeytiBak(pw, element);
+            var fram = skeytiFram(pw, element);
+            fram.then(function(fData) {
                 var endTime = new Date();
-                console.log('bak');
+                if (fData == false)
+                    bak.then(function(bData) {
+                        if (bData == false)
+                            return {
+                                successful : true,
+                                how : 'includes',
+                                time : endTime - startTime
+                            }
+                        return {
+                            successful : true,
+                            how : 'bak',
+                            time : endTime - startTime
+                        }
+                    });
                 return {
                     successful : true,
-                    how : 'skeytibak',
+                    how : 'fram',
                     time : endTime - startTime
-                };
-            }
-            if (skeytiFram(pw, element)) {
-                var endTime = new Date();
-                console.log('fram');
-                return {
-                    successful : true,
-                    how : 'skeytifram',
-                    time : endTime - startTime
-                };
-            }
+                }
+            });
         }
-        if (element == 'brady')
+        if (element == 'brady' && !pw.includes(element))
+            console.log('fail');
             return {
-                succesful : false,
+                successful : false,
                 how : 'none',
                 time : null
             }
@@ -64,7 +71,7 @@ function leetSpeek(pw, testpw) {
     return (pw == leet);
 }
 
-function skeytiBak(pw, testpw) {
+async function skeytiBak(pw, testpw) {
     for (var i = 0; i < alphabet.length; i++) {
         var temppw = testpw + alphabet[i];
         if (temppw == pw)
@@ -73,7 +80,7 @@ function skeytiBak(pw, testpw) {
     return false;
 }
 
-function skeytiFram(pw, testpw) {
+async function skeytiFram(pw, testpw) {
     for (var i = 0; i < alphabet.length; i++) {
         var temppw = alphabet[i] + testpw;
         if (temppw == pw)
