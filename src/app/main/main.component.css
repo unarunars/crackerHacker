@@ -2,4 +2,30 @@
     width: 100%;
     text-align: center;
   }
+.header{
+  text-align: center;
+  padding: 50px;
+  color: white;
+}
+.input{
+  font-size: 50px !important;
+  color: white !important;
+
+
+}
+.output{
+  color: white;
+  text-align: center;
+}
+
+h1{
+  font-size: 100px;
+  margin-bottom: 50px;
+}
+h3{
+  font-family: "Courier New", Courier, monospace;
+}
+h2{
+  font-size: 30px;
+}
   

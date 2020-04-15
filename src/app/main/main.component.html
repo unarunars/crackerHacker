@@ -1,10 +1,16 @@
+<div class="header">
+    <h1>Hacker Cracker</h1>
+    <h3>Enter a password and see how it can be cracked</h3>
+</div>
+<div class = "input">
+    <mat-form-field class="example-full-width">
+        <mat-label>Enter a password</mat-label>
+        <input matInput placeholder="" (keyup)="onKey($event)">
+    </mat-form-field>
+</div>
 
-
-<mat-form-field class="example-full-width">
-    <mat-label>Enter a password</mat-label>
-    <input matInput placeholder="" (keyup)="onKey($event)">
-</mat-form-field>
 <div class = "output" *ngIf = value>
-    <h1>{{title}}</h1>
-    <h5>{{text}}</h5>
+    <h2>{{title}}</h2>
+    <h3>{{title1}}</h3>
+    <h3>{{text}}</h3>
 </div>

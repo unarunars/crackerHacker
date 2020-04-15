@@ -3,15 +3,22 @@ import { createRainbow } from 'src/assets/js/rainbow.js';
 import { checkPassword } from 'src/assets/js/crack.js';
 
 
+
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.css']
 })
 export class MainComponent implements OnInit {
+  //brady
   value = "";
   title = "";
+  title1 = "";
   text = "";
+  hasNumber = false;
+  hasUpper = false;
+  hasLower = false;
+  hasSympol = false;
   constructor() { }
   
   ngOnInit(): void {
@@ -24,82 +31,130 @@ export class MainComponent implements OnInit {
     this.getCrackerHacker(this.value);
   }
   getCrackerHacker(value: string){
-    let obj = checkPassword(value)
-    
-    if(obj.successful){
-      console.log("það fannst");
-      this.title = "It was immediately"
-      if(obj.how === 'rainbow'){
-        this.text = "It was found in a list of known passwords"
-      }
-
-    }else{
-      console.log(value.length);
-      var time = this.showTime(value);
-      this.title = "The time it took to find your password is"
-      if(time < 0){
-        var mill = time / 1000;
-        this.text = mill + " milliseconds";
-      }else if(time >= 60  && time < 3600){
-        var min = time / 60;
-        this.text = min + " minutes"
-      }else if(time >= 3600 && time < 86400){
-        var hour = time / 3600;
-        this.text = hour + " hours";  
-      }/*else if(time >=86400 && time < 604800){
-        var day = time /93600;
-        this.text = month + " week";
-      }else if( time >= 604800 && time < 1209600){
-        var half
-      }
-      this.text = time + " sek";*/
-      this.text = "afhverju kemur þetta ekki args";
+    if(value.length === 0 ){
+      this.hasNumber = false;
+      this.hasUpper = false;
+      this.hasLower = false;
+      this.hasSympol = false;
+      console.log("tómt");
     }
+      var time = this.showTime(value);
+      console.log(time);
+     
+      this.title = "Your password was not cracked!";
+      this.title1 = "The time it takes to crack it:"
+      //ef hann er minni en microsec
+      if(time <= 0.000001){
+        let nanosec = time * 1000000000;
+        this.text = nanosec + " nanoseconds"; 
+      //ef hann er minni en millisek
+      }else if(time < 0.001){
+        let microsec = time * 1000000;
+        this.text = Math.round(microsec) + " microseconds";
+      //ef hann er minni en sek
+      }else if(time < 1.0){
+        let millisec = time * 1000;
+        this.text = Math.round(millisec) + " milliseconds";
+      //ef hann er minni en min
+      }else if(time < 60 ){
+        let sek = time;
+        this.text = Math.round(sek) + " seconds";
+        console.log("sek");
+
+      //ef hann er minni en klst
+      }else if(time < 3600 ){
+        let min = time / 60;
+        this.text = Math.round(min) + " minutes";
+        console.log("min");
+
+      //minni enn dagur
+      }else if(time < 86400){
+        let hour = time / 3600;
+        this.text = Math.round(hour) + " hours";
+        console.log("klukkutíma");
+        
+      //minni enn vika 
+      }else if(time < 604800){
+        let day = time /86400;
+        this.text = Math.round(day)+ " days";
+        console.log("days");
+      //UNAR HÉRNA VIKA VIRKAR EKKI WHYYY 
+      //minna en mánuður
+      }else if(time < 2629744){
+        let week = time / 604800;
+        this.text = Math.round(week)+ " weeks";
+        console.log("afhvejru ekki hingað");
+      //minna en ár
+      }else if(time < 31556926){
+        let month = time /2629744;
+        this.text = Math.round(month) + " months";
+        console.log("mánuðir")
+      //minna en öld
+      }else if(time < 3155692600){
+        let year = time /31556926;
+        this.text = Math.round(year)+ " years";
+      //minna enn 1000 ár
+      }else if(time < 31556926000){
+        let hundYears = time / 3155692600;
+        this.text = Math.round(hundYears)+ " hundred years";
+      //minna enn milljon ár
+      }else if(time < 31556926000000){
+        let thosandYears = time /31556926000;
+        this.text = Math.round(thosandYears)  + " thousand years";
+        //minna en billion 
+      }else if(time < 31556926000000000){
+        let millionYears = time / 31556926000000;
+        this.text = Math.round(millionYears) + " million years";
+        //minna en trillion
+      }else if(time < 31556926000000000000){
+        let billion = time /31556926000000000;
+        this.text = Math.round(billion) + " billion years";
+      }else{
+        let trillion = time / 31556926000000000000;
+        this.text = Math.round(trillion)+ " trillion years";
+      }
+      
     
   }
   
   showTime(value : string){
-    console.log(length);
+    console.log(value.length);
     var character = "";
     var alphabet = 0;
-    var hasNumber = false;
-    var hasUpper = false;
-    var hasLower = false;
-    var hasSympol = false;
     
-
     //alphabet lengd mismunandi
     //0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ#$%&*?
     for(let i = 0; i< value.length; i++){
       character = value.charAt(i);
-      console.log(character);
-      console.log(parseInt(character));
-      if(character === character.toUpperCase() && !hasUpper){
+      
+      if(character === character.toUpperCase() && !this.hasUpper){
         alphabet += 26;
-        hasUpper =true;
-      }else if(character === character.toLowerCase() && !hasLower){
+        this.hasUpper =true;
+      }else if(character === character.toLowerCase() && !this.hasLower){
         alphabet +=26;
-        hasLower= true;
+        this.hasLower= true;
       }
-      else if((character ==='#' || character === '$' || character === '%'|| character == '&' || character == '*') && !hasSympol ){
+      else if((character ==='#' || character === '$' || character === '%'|| character == '&' || character == '*') && !this.hasSympol ){
         alphabet += 5;
-        hasSympol = true;
-      }else if(parseInt(character) < 10  && !hasNumber){
-        console.log("tala");
+        this.hasSympol = true;
+      }else if(parseInt(character) < 10  && !this.hasNumber){
         console.log(character);
         alphabet += 10;
-        hasNumber = true;
+        this.hasNumber = true;
       }
       
     }
-    console.log("alphaber: ")
-    console.log(alphabet)
-    var results = Math.pow(alphabet,value.length);
-    results /= 10000000000000;
-    console.log(results); 
+    
+    //á eftir að laga alphabet 
+    var results = Math.pow(67,value.length);
+    /*console.log(results);*/
+    //erum að gera ráð fyrir að talvan sé mjög öflug
+    //results /= 10000000000000;
+    //þetta er bara test 
+    results /= 2000000;
+    //kemur í sek
     return results;
-    //68^4
-    //
+    
   }
 }
 
