@@ -42,7 +42,7 @@ export class MainComponent implements OnInit {
       console.log(time);
      
       this.title = "Your password was not cracked!";
-      this.title1 = "But the time it takes to crack it is:"
+      this.title1 = "The time it takes to crack it:"
       //ef hann er minni en microsec
       if(time <= 0.000001){
         let nanosec = time * 1000000000;
