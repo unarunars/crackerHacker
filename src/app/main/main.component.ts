@@ -134,6 +134,7 @@ export class MainComponent implements OnInit {
       
     
   }
+  
   showTime(value : string){
     console.log(value.length);
     var character = "";
@@ -173,7 +174,5 @@ export class MainComponent implements OnInit {
     return results;
     
   }
-
-
-
 }
+
