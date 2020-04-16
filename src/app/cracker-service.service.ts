@@ -21,10 +21,11 @@ export class CrackerServiceService {
     if (rainbowArr[unicode2])
     {
         console.log('rainbow');
-        return {
+        return [{
             successful : true,
-            how : 'rainbow'
-        };
+            how : 'rainbow',
+            password : pw
+        }];
     }
 
     var arr = [];
@@ -38,16 +39,47 @@ export class CrackerServiceService {
             password : passwordArr[i]
         });
       }
+
       var pwLeet = this.leetSpeekpw(passwordArr[i]);
-      if (pw.includes(passwordArr[i]) || pw.includes(pwLeet)) {
-        var bak = this.skeytiBak(pw, passwordArr[i]);
-        var fram = this.skeytiFram(pw, passwordArr[i]);
-        if (pwLeet != pw) {
+      var includesPw = pw.includes(passwordArr[i]);
+      var includesLeet = pw.includes(pwLeet);
+      if (includesPw || includesLeet) {
+        if (includesPw) {
+          var bak = this.skeytiBak(pw, passwordArr[i]);
+          var fram = this.skeytiFram(pw, passwordArr[i]);
+
+          if (fram == true) {
+            console.log('fram');
+            arr.push({
+              successful : true,
+              how : 'fram',
+              password : passwordArr[i]
+            });
+          }
+          if (bak == true) {
+            console.log('bak');
+            arr.push({
+              successful : true,
+              how : 'bak',
+              password : passwordArr[i]
+            });
+          }
+          if (bak == false && fram == false) {
+            console.log('includes');
+            arr.push({
+              successful : true,
+              how : 'includes',
+              password : passwordArr[i]
+            });
+          }
+        }
+
+        if (pwLeet != pw && includesLeet) {
           var bakLeet = this.skeytiBak(pw, pwLeet);
           var framLeet = this.skeytiFram(pw, pwLeet);
 
           if (framLeet == true) {
-            console.log('fram');
+            console.log('framLeet');
             arr.push({
               successful : true,
               how : 'framLeet',
@@ -55,7 +87,7 @@ export class CrackerServiceService {
             });
           }
           if (bakLeet == true) {
-            console.log('bak');
+            console.log('bakLeet');
             arr.push({
               successful : true,
               how : 'bakLeet',
@@ -63,37 +95,13 @@ export class CrackerServiceService {
             });
           }
           if (bakLeet == false && framLeet == false) {
-            console.log('includes');
+            console.log('includesLeet');
             arr.push({
               successful : true,
               how : 'includesLeet',
               password : passwordArr[i]
             });
           }
-        }
-        if (fram == true) {
-          console.log('fram');
-          arr.push({
-            successful : true,
-            how : 'fram',
-            password : passwordArr[i]
-          });
-        }
-        if (bak == true) {
-          console.log('bak');
-          arr.push({
-            successful : true,
-            how : 'bak',
-            password : passwordArr[i]
-          });
-        }
-        if (bak == false && fram == false) {
-          console.log('includes');
-          arr.push({
-            successful : true,
-            how : 'includes',
-            password : passwordArr[i]
-          });
         }
       }
     }
