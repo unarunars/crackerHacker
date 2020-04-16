@@ -27,7 +27,8 @@ export class MainComponent implements OnInit {
   onKey(event: any) { // without type info
     //this.values += event.target.value;
     this.value = event.target.value;
-    console.log(this.value);
+    let check = checkPassword(this.value);
+    //console.log(this.value);
     this.getCrackerHacker(this.value);
   }
   getCrackerHacker(value: string){
@@ -36,10 +37,10 @@ export class MainComponent implements OnInit {
       this.hasUpper = false;
       this.hasLower = false;
       this.hasSympol = false;
-      console.log("tómt");
+      //console.log("tómt");
     }
       var time = this.showTime(value);
-      console.log(time);
+      //console.log(time);
      
       this.title = "Your password was not cracked!";
       this.title1 = "The time it takes to crack it:"
@@ -59,36 +60,36 @@ export class MainComponent implements OnInit {
       }else if(time < 60 ){
         let sek = time;
         this.text = Math.round(sek) + " seconds";
-        console.log("sek");
+        //console.log("sek");
 
       //ef hann er minni en klst
       }else if(time < 3600 ){
         let min = time / 60;
         this.text = Math.round(min) + " minutes";
-        console.log("min");
+        //console.log("min");
 
       //minni enn dagur
       }else if(time < 86400){
         let hour = time / 3600;
         this.text = Math.round(hour) + " hours";
-        console.log("klukkutíma");
+        //console.log("klukkutíma");
         
       //minni enn vika 
       }else if(time < 604800){
         let day = time /86400;
         this.text = Math.round(day)+ " days";
-        console.log("days");
+        //console.log("days");
       //UNAR HÉRNA VIKA VIRKAR EKKI WHYYY 
       //minna en mánuður
       }else if(time < 2629744){
         let week = time / 604800;
         this.text = Math.round(week)+ " weeks";
-        console.log("afhvejru ekki hingað");
+        //console.log("afhvejru ekki hingað");
       //minna en ár
       }else if(time < 31556926){
         let month = time /2629744;
         this.text = Math.round(month) + " months";
-        console.log("mánuðir")
+        //console.log("mánuðir")
       //minna en öld
       }else if(time < 3155692600){
         let year = time /31556926;
@@ -118,7 +119,7 @@ export class MainComponent implements OnInit {
   }
   
   showTime(value : string){
-    console.log(value.length);
+    //console.log(value.length);
     var character = "";
     var alphabet = 0;
     

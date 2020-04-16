@@ -8,11 +8,14 @@ export async function checkPassword(pw) {
         unicode += pw.charCodeAt(i);
     unicode = parseInt(unicode);
     if (rainbowArr[unicode])
+    {
+        console.log('rainbow');
         return {
             successful : true,
             how : 'rainbow',
             time : 0
         };
+    }
     
     var startTime = new Date();
 
@@ -29,36 +32,35 @@ export async function checkPassword(pw) {
         if (pw.includes(element)) {
             var bak = skeytiBak(pw, element);
             var fram = skeytiFram(pw, element);
+
             fram.then(function(fData) {
                 var endTime = new Date();
-                if (fData == false)
-                    bak.then(function(bData) {
-                        if (bData == false)
-                            return {
-                                successful : true,
-                                how : 'includes',
-                                time : endTime - startTime
-                            }
+                bak.then(function(bData) {
+                    if (fData == true) {
+                        console.log('fram');
+                        return {
+                            successful : true,
+                            how : 'fram',
+                            time : endTime - startTime
+                        }
+                    } else if (bData == true) {
+                        console.log('bak');
                         return {
                             successful : true,
                             how : 'bak',
                             time : endTime - startTime
                         }
-                    });
-                return {
-                    successful : true,
-                    how : 'fram',
-                    time : endTime - startTime
-                }
+                    } else if (bData == false && fData == false) {
+                        console.log('includes');
+                        return {
+                            successful : true,
+                            how : 'includes',
+                            time : endTime - startTime
+                        }
+                    }
+                });
             });
         }
-        if (element == 'brady' && !pw.includes(element))
-            console.log('fail');
-            return {
-                successful : false,
-                how : 'none',
-                time : null
-            }
     });
 }
 
