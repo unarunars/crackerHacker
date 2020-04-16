@@ -45,15 +45,10 @@ export class MainComponent implements OnInit {
     }
 
     //ÞETTA SIGGI 
-    /*
     let observerable = this.crackerServise.getPassword(value);
-    observerable.subscribe( t => {
-      console.log(t);
-    })
-    */
-    let obj = this.crackerServise.getPassword(value);
-    console.log(obj);
-
+    observerable.then(function(data) {
+      console.log(data);
+    });
 
       var time = this.showTime(value);
       //console.log(time);
