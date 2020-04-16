@@ -18,8 +18,7 @@ export class CrackerServiceService {
     for (var i = 0; i < pw.length; i++)
         unicode += pw.charCodeAt(i);
     var unicode2 = parseInt(unicode);
-    console.log(unicode, unicode2);
-    console.log(rainbowArr[unicode2]);
+    
     if (rainbowArr[unicode2])
     {
         console.log('rainbow');
