@@ -13,8 +13,7 @@ export class CrackerServiceService {
 
   alphabet : string = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ#$%&*?';
 
-  getPassword(pw): any{
-    console.log(pw)
+  async getPassword(pw): Promise<any>{
     var unicode = '';
     for (var i = 0; i < pw.length; i++)
         unicode += pw.charCodeAt(i);
@@ -26,73 +25,90 @@ export class CrackerServiceService {
         console.log('rainbow');
         return {
             successful : true,
-            how : 'rainbow',
-            time : 0
+            how : 'rainbow'
         };
     }
 
-    passwordArr.forEach(element => {
-        if (this.leetSpeek(pw, element)) {
-            var endTime = new Date();
-            console.log('leet');
-            return {
-                successful : true,
-                how : 'leetspeek'
-            };
-        }
-        if (pw.includes(element)) {
-            var bak = this.skeytiBak(pw, element);
-            var fram = this.skeytiFram(pw, element);
+    var arr = [];
 
-            if (fram == true) {
-              console.log('fram');
-              return {
-                successful : true,
-                how : 'fram'
-                }
-            } else if (bak == true) {
-              console.log('bak');
-              return {
-                successful : true,
-                how : 'bak'
-              }
-            } else if (bak == false && fram == false) {
-              console.log('includes');
-              return {
-                successful : true,
-                how : 'includes'
-              }
-          }
+    for (var i = 0; i < passwordArr.length; i++) {
+      if (this.leetSpeek(pw, passwordArr[i])) {
+        console.log('leet');
+        arr.push({
+            successful : true,
+            how : 'leetspeek',
+            password : passwordArr[i]
+        });
+      }
+      var pwLeet = this.leetSpeekpw(passwordArr[i]);
+      if (pw.includes(passwordArr[i]) || pw.includes(pwLeet)) {
+        var bak = this.skeytiBak(pw, passwordArr[i]);
+        var fram = this.skeytiFram(pw, passwordArr[i]);
+        var bakLeet = this.skeytiBak(pw, pwLeet);
+        var framLeet = this.skeytiFram(pw, pwLeet);
+
+        if (fram == true) {
+          console.log('fram');
+          arr.push({
+            successful : true,
+            how : 'fram',
+            password : passwordArr[i]
+          });
+        } else if (bak == true) {
+          console.log('bak');
+          arr.push({
+            successful : true,
+            how : 'bak',
+            password : passwordArr[i]
+          });
+        } else if (bak == false && fram == false) {
+          console.log('includes');
+          arr.push({
+            successful : true,
+            how : 'includes',
+            password : passwordArr[i]
+          });
         }
-    });
+      }
+    }
+    return arr;
   }
 
-  leetSpeek(pw, testpw) : boolean {
+  leetSpeek(pw : string, testpw : string) : boolean {
     var leet = testpw.replace('e', '3');
     leet = leet.replace('o', '0');
     leet = leet.replace('l', '1');
     leet = leet.replace('a', '4');
     leet = leet.replace('s', '5');
     return (pw == leet);
-}
+  }
 
-  skeytiBak(pw, testpw) : boolean {
+  leetSpeekpw(testpw : string) : string {
+    var leet = testpw.replace('e', '3');
+    leet = leet.replace('o', '0');
+    leet = leet.replace('l', '1');
+    leet = leet.replace('a', '4');
+    leet = leet.replace('s', '5');
+    return leet;
+  }
+
+  skeytiBak(pw : string, testpw : string) : boolean {
     for (var i = 0; i < this.alphabet.length; i++) {
         var temppw = testpw + this.alphabet[i];
         if (temppw == pw)
             return true;
     }
     return false;
-}
+  }
 
-  skeytiFram(pw, testpw) : boolean {
+  skeytiFram(pw : string, testpw : string) : boolean {
     for (var i = 0; i < this.alphabet.length; i++) {
         var temppw = this.alphabet[i] + testpw;
         if (temppw == pw)
             return true;
     }
     return false;
-}
+  }
 
   constructor(
     private http: HttpClient,
