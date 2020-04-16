@@ -13,7 +13,7 @@ export class CrackerServiceService {
 
   alphabet : string = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ#$%&*?';
 
-  async getPassword(pw): Promise<any>{
+  async getPassword(pw : string): Promise<any>{
     var unicode = '';
     for (var i = 0; i < pw.length; i++)
         unicode += pw.charCodeAt(i);
@@ -43,9 +43,35 @@ export class CrackerServiceService {
       if (pw.includes(passwordArr[i]) || pw.includes(pwLeet)) {
         var bak = this.skeytiBak(pw, passwordArr[i]);
         var fram = this.skeytiFram(pw, passwordArr[i]);
-        var bakLeet = this.skeytiBak(pw, pwLeet);
-        var framLeet = this.skeytiFram(pw, pwLeet);
+        if (pwLeet != pw) {
+          var bakLeet = this.skeytiBak(pw, pwLeet);
+          var framLeet = this.skeytiFram(pw, pwLeet);
 
+          if (framLeet == true) {
+            console.log('fram');
+            arr.push({
+              successful : true,
+              how : 'framLeet',
+              password : passwordArr[i]
+            });
+          }
+          if (bakLeet == true) {
+            console.log('bak');
+            arr.push({
+              successful : true,
+              how : 'bakLeet',
+              password : passwordArr[i]
+            });
+          }
+          if (bakLeet == false && framLeet == false) {
+            console.log('includes');
+            arr.push({
+              successful : true,
+              how : 'includesLeet',
+              password : passwordArr[i]
+            });
+          }
+        }
         if (fram == true) {
           console.log('fram');
           arr.push({
@@ -53,14 +79,16 @@ export class CrackerServiceService {
             how : 'fram',
             password : passwordArr[i]
           });
-        } else if (bak == true) {
+        }
+        if (bak == true) {
           console.log('bak');
           arr.push({
             successful : true,
             how : 'bak',
             password : passwordArr[i]
           });
-        } else if (bak == false && fram == false) {
+        }
+        if (bak == false && fram == false) {
           console.log('includes');
           arr.push({
             successful : true,
