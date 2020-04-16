@@ -1,6 +1,7 @@
 import { Component, OnInit, SkipSelf } from '@angular/core';
 import { createRainbow } from 'src/assets/js/rainbow.js';
 import { checkPassword } from 'src/assets/js/crack.js';
+import { CrackerServiceService } from '../cracker-service.service';
 
 
 
@@ -20,7 +21,9 @@ export class MainComponent implements OnInit {
   hasLower = false;
   hasSympol = false;
   smiley = "";
-  constructor() { }
+  constructor(
+    private crackerServise: CrackerServiceService,
+  ) { }
   
   ngOnInit(): void {
     createRainbow();
@@ -40,6 +43,14 @@ export class MainComponent implements OnInit {
       this.hasSympol = false;
       //console.log("tómt");
     }
+
+    //ÞETTA SIGGI 
+    let observerable = this.crackerServise.getJson();
+    observerable.subscribe( t => {
+      console.log(t);
+    })
+
+
       var time = this.showTime(value);
       //console.log(time);
      
