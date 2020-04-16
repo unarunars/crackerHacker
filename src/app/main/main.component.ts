@@ -3,6 +3,7 @@ import { createRainbow } from 'src/assets/js/rainbow.js';
 
 import { checkPassword } from 'src/assets/js/crack.js';
 import { CrackerServiceService } from '../cracker-service.service';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 
 
@@ -22,6 +23,7 @@ export class MainComponent implements OnInit {
   hasLower = false;
   hasSympol = false;
   smiley = "";
+  cracked: boolean; 
   constructor(
     private crackerServise: CrackerServiceService,
   ) { }
@@ -48,8 +50,12 @@ export class MainComponent implements OnInit {
     let observerable = this.crackerServise.getPassword(value);
     observerable.then(function(data) {
       console.log(data);
+      console.log(data.length);
+      
     });
-
+    if(this.cracked){
+      console.log("CRACKED");
+    }else {
       var time = this.showTime(value);
       //console.log(time);
      
@@ -142,6 +148,9 @@ export class MainComponent implements OnInit {
         this.smiley = "sentiment_very_satisfied";
         this.text = Math.round(trillion)+ " trillion years";
       }
+    }
+
+     
       
     
   }
