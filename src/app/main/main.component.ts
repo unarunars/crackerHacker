@@ -26,7 +26,7 @@ export class MainComponent implements OnInit {
   onKey(event: any) { // without type info
     //this.values += event.target.value;
     this.value = event.target.value;
-    //console.log(this.value);
+    
     this.getCrackerHacker(this.value);
   }
   getCrackerHacker(value: string){

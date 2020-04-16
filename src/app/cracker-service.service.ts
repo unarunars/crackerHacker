@@ -10,9 +10,8 @@ import { checkPassword } from 'src/assets/js/crack.js';
 export class CrackerServiceService {
 
   getPassword(pw): Observable<any>{
-    
     return checkPassword(pw);
-    }
+  }
 
   constructor(
     private http: HttpClient,
