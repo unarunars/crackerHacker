@@ -1,27 +1,21 @@
-# Cracker
+# CrackerHacker
+Una Rúnarsdóttir - unr2@hi.is
+Sigursteinn Pálsson Enos. - 
+Þetta verkefni var unnið í [Angular CLI](https://github.com/angular/angular-cli) version 9.1.1.
+## Til að setja upp forritið og keyra
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.1.
-
-## Development server
+Download node.js
+Download angular: npm install -g @angular/cli
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
+## Lýsing
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Þessi síða er til að sýna hversu auðvelt er að afkóða lykilorð.
+Notendi getur skrifað lykilorðið og séð hvort að reikniritið okkar
+hafi náð að leysa það ef ekki þá segjum við hvað það tekur langan
+tíma að 'Brute-force' lykilorðið.
+Ef við náðum að afkóða það fær notandinn að sjá með hvaða aðferð, 
+hvort það sé til í lista með þekktum lykilorðum eða lista með þekktum
+lykilorðum og búið að bæta auka stöfum eða leet-speak. 
+Viðmótið er hannað til að vera notendavænt og þæginlegt.
