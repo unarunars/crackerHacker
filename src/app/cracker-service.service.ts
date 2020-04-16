@@ -14,10 +14,13 @@ export class CrackerServiceService {
   alphabet : string = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ#$%&*?';
 
   getPassword(pw): any{
+    console.log(pw)
     var unicode = '';
     for (var i = 0; i < pw.length; i++)
         unicode += pw.charCodeAt(i);
     var unicode2 = parseInt(unicode);
+    console.log(unicode, unicode2);
+    console.log(rainbowArr[unicode2]);
     if (rainbowArr[unicode2])
     {
         console.log('rainbow');
