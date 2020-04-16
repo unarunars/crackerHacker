@@ -1,5 +1,6 @@
 import { Component, OnInit, SkipSelf } from '@angular/core';
 import { createRainbow } from 'src/assets/js/rainbow.js';
+
 import { checkPassword } from 'src/assets/js/crack.js';
 import { CrackerServiceService } from '../cracker-service.service';
 
@@ -31,7 +32,6 @@ export class MainComponent implements OnInit {
   onKey(event: any) { // without type info
     //this.values += event.target.value;
     this.value = event.target.value;
-    let check = checkPassword(this.value);
     //console.log(this.value);
     this.getCrackerHacker(this.value);
   }
@@ -45,7 +45,7 @@ export class MainComponent implements OnInit {
     }
 
     //ÞETTA SIGGI 
-    let observerable = this.crackerServise.getJson();
+    let observerable = this.crackerServise.getPassword(value);
     observerable.subscribe( t => {
       console.log(t);
     })

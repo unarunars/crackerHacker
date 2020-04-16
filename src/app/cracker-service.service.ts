@@ -1,14 +1,17 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+
+import { checkPassword } from 'src/assets/js/crack.js';
+
 @Injectable({
   providedIn: 'root'
 })
 export class CrackerServiceService {
 
-  getJson(): Observable<any>{
+  getPassword(pw): Observable<any>{
     
-    return this.http.get('https://aust-hugbo1.herokuapp.com/locations');
+    return checkPassword(pw);
     }
 
   constructor(
