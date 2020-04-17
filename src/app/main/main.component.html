@@ -23,34 +23,58 @@
         </div>
     </div>
     <div *ngIf = "cracked.length !== lengd">
-        <h2>Your password was cracked immediately!</h2>
+        <h2>Your password was cracked!</h2>
         <h3>We cracked your password with {{cracked.length}} way/s</h3>
         <div *ngFor = "let crack of cracked" > 
           
             <div *ngIf = "crack.how === 'rainbow'">
-                <h3>known password table</h3>
+                <h3>A rainbow table was used to crack your password <br/>
+                The password is in the top 10.000 most used passwords list from Daniel Miessler <br/>
+                Password : {{ crack.password }}</h3>
             </div>
             <div *ngIf = "crack.how === 'includes'">
-                <h3>Part of the password is a known table plus some characters</h3>
+                <h3>The password includes a known password from the top 10.000 most used passwords <br/>
+                    Password : {{ crack.password }}
+                </h3>
             </div>
             <div *ngIf = "crack.how === 'fram'">
-                <h3>Known password with one character in front</h3>
+                <h3>Known password with one character in the front from the top 10.000 most used passwords <br/>
+                    Password : {{ crack.password }}
+                </h3>
             </div>
             <div *ngIf = "crack.how === 'bak'">
-                <h3>Known password with one character in back</h3>
+                <h3>Known password with one character in the back from the top 10.000 most used passwords <br/>
+                    Password : {{ crack.password }}
+                </h3>
+            </div>
+            <div *ngIf = "crack.how === 'leet'">
+                <h3> Known password morphed to leet speek <br/>
+                    The password is in the top 10.000 most used passwords list from Daniel Miessler <br/>
+                    Password : {{ crack.password }}</h3>
             </div>
             <div *ngIf = "crack.how === 'framLeet'">
-                <h3>Known password with framLeet</h3>
+                <h3>Known password morphed to leet speek with one character in the front from the top 10.000 most used passwords <br/>
+                    Password : {{ crack.password }}
+                </h3>
             </div>
             <div *ngIf = "crack.how === 'bakLeet'">
-                <h3>Known password with bakleet</h3>
+                <h3>Known password morphed to leet speek with one character in the back from the top 10.000 most used passwords <br/>
+                    Password : {{ crack.password }}
+                </h3>
             </div>
             <div *ngIf = "crack.how === 'includesLeet'">
-                <h3>Known password using Leet-speak</h3>
+                <h3>The password includes a known password morphed to leet speek from the top 10.000 most used passwords <br/>
+                    Password : {{ crack.password }}
+                </h3>
             </div>
-        </div>
     
     </div>
+    <h3>The time it takes to crack it:</h3>
+    <h3>{{text}}</h3>
+    <div class = "smiley">
+        <span class="material-icons">
+            {{smiley}}
+        </span>
     
     
     

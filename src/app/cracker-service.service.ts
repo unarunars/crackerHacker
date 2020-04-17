@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
-import { checkPassword } from 'src/assets/js/crack.js';
 import { rainbowArr, passwordArr } from 'src/assets/js/rainbow.js';
 
 
@@ -21,7 +19,6 @@ export class CrackerServiceService {
     
     if (rainbowArr[unicode2])
     {
-        console.log('rainbow');
         return [{
             successful : true,
             how : 'rainbow',
@@ -33,7 +30,6 @@ export class CrackerServiceService {
 
     for (var i = 0; i < passwordArr.length; i++) {
       if (this.leetSpeek(pw, passwordArr[i])) {
-        console.log('leet');
         arr.push({
             successful : true,
             how : 'leetspeek',
@@ -50,7 +46,6 @@ export class CrackerServiceService {
           var fram = this.skeytiFram(pw, passwordArr[i]);
 
           if (fram == true) {
-            console.log('fram');
             arr.push({
               successful : true,
               how : 'fram',
@@ -58,7 +53,6 @@ export class CrackerServiceService {
             });
           }
           if (bak == true) {
-            console.log('bak');
             arr.push({
               successful : true,
               how : 'bak',
@@ -66,7 +60,6 @@ export class CrackerServiceService {
             });
           }
           if (bak == false && fram == false) {
-            console.log('includes');
             arr.push({
               successful : true,
               how : 'includes',
@@ -80,7 +73,6 @@ export class CrackerServiceService {
           var framLeet = this.skeytiFram(pw, pwLeet);
 
           if (framLeet == true) {
-            console.log('framLeet');
             arr.push({
               successful : true,
               how : 'framLeet',
@@ -88,7 +80,6 @@ export class CrackerServiceService {
             });
           }
           if (bakLeet == true) {
-            console.log('bakLeet');
             arr.push({
               successful : true,
               how : 'bakLeet',
@@ -96,7 +87,6 @@ export class CrackerServiceService {
             });
           }
           if (bakLeet == false && framLeet == false) {
-            console.log('includesLeet');
             arr.push({
               successful : true,
               how : 'includesLeet',
@@ -106,6 +96,12 @@ export class CrackerServiceService {
         }
       }
     }
+    var newValue = this.trimPw(pw, arr);
+    arr.push({
+      successful : true,
+      how : 'the password',
+      password : newValue
+    })
     return arr;
   }
 
@@ -143,6 +139,13 @@ export class CrackerServiceService {
             return true;
     }
     return false;
+  }
+
+  trimPw(pw : string, arr : any) : string {
+    for (var i = 0; i < arr.length; i++) {
+      pw = pw.replace(arr[i].password, '');
+    }
+    return pw;
   }
 
   constructor(
