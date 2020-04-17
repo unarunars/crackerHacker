@@ -157,39 +157,42 @@ export class MainComponent implements OnInit {
   
   showTime(value : string){
     //console.log(value.length);
+
     var character = "";
     var alphabet = 0;
-    
+    this.hasUpper = false;
+    this.hasLower = false;
+    this.hasSympol = false;
+    this.hasNumber = false;
     //alphabet lengd mismunandi
     //0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ#$%&*?
     for(let i = 0; i< value.length; i++){
       character = value.charAt(i);
-      
-      if(character === character.toUpperCase() && !this.hasUpper){
+      let val = parseInt(character);
+
+      if(character === character.toUpperCase() && !this.hasUpper && isNaN(val)){
         alphabet += 26;
         this.hasUpper =true;
       }else if(character === character.toLowerCase() && !this.hasLower){
         alphabet +=26;
         this.hasLower= true;
       }
-      else if((character ==='#' || character === '$' || character === '%'|| character == '&' || character == '*') && !this.hasSympol ){
-        alphabet += 5;
+      else if((character ==='#' || character === '$' || character === '%'|| character == '&' || character == '*' || character == '?') && !this.hasSympol ){
+        alphabet += 6;
         this.hasSympol = true;
-      }else if(parseInt(character) < 10  && !this.hasNumber){
-        console.log(character);
+      }else if(val < 10  && !this.hasNumber){
         alphabet += 10;
         this.hasNumber = true;
       }
       
     }
     
-    //á eftir að laga alphabet 
-    var results = Math.pow(67,value.length);
+    var results = Math.pow(alphabet,value.length);
     /*console.log(results);*/
     //erum að gera ráð fyrir að talvan sé mjög öflug
     //results /= 10000000000000;
     //þetta er bara test 
-    results /= 2000000;
+    results /= 20000000;
     //kemur í sek
     return results;
     

@@ -48,24 +48,24 @@
                     Password : {{ crack.password }}
                 </h3>
             </div>
-            <div *ngIf = "crack.how === 'leet'">
+            <div *ngIf = "crack.how === 'leetspeek'">
                 <h3> Known password morphed to leet speek <br/>
                     The password is in the top 10.000 most used passwords list from Daniel Miessler <br/>
-                    Password : {{ crack.password }}</h3>
+                    Password : {{ crack.leetpw }}</h3>
             </div>
             <div *ngIf = "crack.how === 'framLeet'">
                 <h3>Known password morphed to leet speek with one character in the front from the top 10.000 most used passwords <br/>
-                    Password : {{ crack.password }}
+                    Password : {{ crack.leetpw }}
                 </h3>
             </div>
             <div *ngIf = "crack.how === 'bakLeet'">
                 <h3>Known password morphed to leet speek with one character in the back from the top 10.000 most used passwords <br/>
-                    Password : {{ crack.password }}
+                    Password : {{ crack.leetpw }}
                 </h3>
             </div>
             <div *ngIf = "crack.how === 'includesLeet'">
                 <h3>The password includes a known password morphed to leet speek from the top 10.000 most used passwords <br/>
-                    Password : {{ crack.password }}
+                    Password : {{ crack.leetpw }}
                 </h3>
             </div>
     

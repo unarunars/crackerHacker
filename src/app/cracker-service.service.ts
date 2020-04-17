@@ -33,7 +33,8 @@ export class CrackerServiceService {
         arr.push({
             successful : true,
             how : 'leetspeek',
-            password : passwordArr[i]
+            password : this.leetSpeekpw(passwordArr[i]),
+            leetpw : passwordArr[i]
         });
       }
 
@@ -76,21 +77,24 @@ export class CrackerServiceService {
             arr.push({
               successful : true,
               how : 'framLeet',
-              password : passwordArr[i]
+              password : this.leetSpeekpw(passwordArr[i]),
+              leetpw : passwordArr[i]
             });
           }
           if (bakLeet == true) {
             arr.push({
               successful : true,
               how : 'bakLeet',
-              password : passwordArr[i]
+              password : this.leetSpeekpw(passwordArr[i]),
+              leetpw : passwordArr[i]
             });
           }
           if (bakLeet == false && framLeet == false) {
             arr.push({
               successful : true,
               how : 'includesLeet',
-              password : passwordArr[i]
+              password : this.leetSpeekpw(passwordArr[i]),
+              leetpw : passwordArr[i]
             });
           }
         }
