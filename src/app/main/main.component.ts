@@ -51,7 +51,6 @@ export class MainComponent implements OnInit {
     observerable.then(function(data) {
 
       that.cracked = data;
-
       let time;
       if (data[0].how != 'rainbow')
         time = that.showTime(data[data.length-1].password);
@@ -148,9 +147,11 @@ export class MainComponent implements OnInit {
         that.smiley = "sentiment_very_satisfied";
         that.text = Math.round(trillion)+ " trillion years";
       }
+      for (var i = 0; i < that.cracked.length; i++) {
+        if (that.cracked[i].how === 'the password')
+          that.cracked.splice(i, 1);
+      }
       console.log(that.cracked);
-      if (that.cracked.length > 1)
-        that.cracked.pop();
     });  
   }
   
