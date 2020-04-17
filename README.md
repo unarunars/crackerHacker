@@ -19,3 +19,5 @@ Ef við náðum að afkóða það fær notandinn að sjá með hvaða aðferð,
 hvort það sé til í lista með þekktum lykilorðum eða lista með þekktum
 lykilorðum og búið að bæta auka stöfum eða leet-speak. 
 Viðmótið er hannað til að vera notendavænt og þæginlegt.
+
+

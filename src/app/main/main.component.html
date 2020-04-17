@@ -1,5 +1,5 @@
 <div class="header">
-    <h1>Hacker Cracker</h1>
+    <h1>Cracker Hacker</h1>
     <h3>Enter a password and see how it can be cracked</h3>
 </div>
 <div class = "input">
@@ -10,13 +10,49 @@
 </div>
 
 <div class = "output" *ngIf = value>
-    <h2>{{title}}</h2>
-    <h3>{{title1}}</h3>
-    <h3>{{text}}</h3>
-    <div class = "smiley">
+    
+    
+    <div *ngIf = "cracked.length === lengd">
+        <h2>Your password was not cracked!</h2>
+        <h3>The time it takes to crack it:</h3>
+        <h3>{{text}}</h3>
+        <div class = "smiley">
         <span class="material-icons">
             {{smiley}}
         </span>
+        </div>
     </div>
+    <div *ngIf = "cracked.length !== lengd">
+        <h2>Your password was cracked immediately!</h2>
+        <h3>We cracked your password with {{cracked.length}} way/s</h3>
+        <div *ngFor = "let crack of cracked" > 
+          
+            <div *ngIf = "crack.how === 'rainbow'">
+                <h3>known password table</h3>
+            </div>
+            <div *ngIf = "crack.how === 'includes'">
+                <h3>Part of the password is a known table plus some characters</h3>
+            </div>
+            <div *ngIf = "crack.how === 'fram'">
+                <h3>Known password with one character in front</h3>
+            </div>
+            <div *ngIf = "crack.how === 'bak'">
+                <h3>Known password with one character in back</h3>
+            </div>
+            <div *ngIf = "crack.how === 'framLeet'">
+                <h3>Known password with framLeet</h3>
+            </div>
+            <div *ngIf = "crack.how === 'bakLeet'">
+                <h3>Known password with bakleet</h3>
+            </div>
+            <div *ngIf = "crack.how === 'includesLeet'">
+                <h3>Known password using Leet-speak</h3>
+            </div>
+        </div>
+    
+    </div>
+    
+    
+    
 </div>
 

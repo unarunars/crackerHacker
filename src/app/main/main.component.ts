@@ -23,7 +23,11 @@ export class MainComponent implements OnInit {
   hasLower = false;
   hasSympol = false;
   smiley = "";
-  cracked: boolean; 
+  cracked = [];
+  algo = false;
+  lengd = 0;
+
+  
   constructor(
     private crackerServise: CrackerServiceService,
   ) { }
@@ -45,20 +49,31 @@ export class MainComponent implements OnInit {
       this.hasSympol = false;
       //console.log("tómt");
     }
-
+    let that = this;
     //ÞETTA SIGGI 
     let observerable = this.crackerServise.getPassword(value);
     observerable.then(function(data) {
-      console.log(data);
-      console.log(data.length);
+      // = []
+      console.log(that.cracked);
+      
+      that.cracked = data;
+      //return data;
+      
       
     });
-    if(this.cracked){
-      console.log("CRACKED");
+    console.log("cracked " ,this.cracked);
+    
+    
+    if(this.cracked.length > 0){
+      this.algo = true; 
+      this.title = "Your password was cracked immediately!";
+      this.title1 = "We cracked your password with " + this.cracked.length.toString() + " algorithm/s:"
+      
     }else {
+      this.algo = false;
       var time = this.showTime(value);
       //console.log(time);
-     
+      
       this.title = "Your password was not cracked!";
       this.title1 = "The time it takes to crack it:"
       //ef hann er minni en microsec
